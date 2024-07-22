@@ -22,7 +22,7 @@ class PrivateManufacturerTest(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
             username="testuser",
-            password = "test123",
+            password="test123",
         )
         self.client.force_login(self.user)
 
@@ -43,12 +43,15 @@ class PrivateCarTest(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
             username="testuser",
-            password = "test123",
+            password="test123",
         )
         self.client.force_login(self.user)
 
     def test_retrieve_car(self):
-        manufacturer = Manufacturer.objects.create(name="Audi", country="Germany")
+        manufacturer = Manufacturer.objects.create(
+            name="Audi",
+            country="Germany"
+        )
         Car.objects.create(model="test", manufacturer=manufacturer)
         Car.objects.create(model="test2", manufacturer=manufacturer)
         response = self.client.get(CAR_URL)
@@ -65,7 +68,7 @@ class PrivateDriverTest(TestCase):
     def setUp(self) -> None:
         self.user = get_user_model().objects.create_user(
             username="testuser",
-            password = "test123",
+            password="test123",
         )
         self.client.force_login(self.user)
 
@@ -73,7 +76,7 @@ class PrivateDriverTest(TestCase):
         Driver.objects.create_user(
             username="testuser8",
             password="test123",
-            license_number = "12345678"
+            license_number="12345678"
         )
         response = self.client.get(DRIVER_URL)
         self.assertEqual(response.status_code, 200)

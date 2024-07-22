@@ -12,9 +12,9 @@ class ModelsTests(TestCase):
     def test_driver_str(self):
         driver = get_user_model().objects.create(
             username="test",
-            password = "test123",
-            first_name = "test_first",
-            last_name = "test_last",
+            password="test123",
+            first_name="test_first",
+            last_name="test_last",
         )
         self.assertEqual(
             str(driver),
@@ -22,7 +22,9 @@ class ModelsTests(TestCase):
         )
 
     def test_car_str(self):
-        manufacturer = Manufacturer.objects.create(name="Audi", country="Germany") # ForeignKey relation
+        manufacturer = Manufacturer.objects.create(
+            name="Audi",
+            country="Germany")  # ForeignKey relation
         driver = get_user_model().objects.create(
             username="test",
             password="test123",
